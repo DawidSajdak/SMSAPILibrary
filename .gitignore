@@ -1,0 +1,7 @@
+ant.properties
+build.xml
+local.properties
+.idea*
+bin*
+gen*
+SMSAPILibrary.iml
