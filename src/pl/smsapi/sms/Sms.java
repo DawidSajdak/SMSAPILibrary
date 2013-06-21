@@ -27,7 +27,7 @@ public class Sms implements SmsInterface {
     protected String sender;
 
     @Override
-    public boolean isEco() {
+    public boolean getIsEco() {
         return isEco;
     }
 

@@ -6,7 +6,7 @@ package pl.smsapi.sms;
  */
 public interface SmsInterface {
 
-    public boolean isEco();
+    public boolean getIsEco();
 
     public void setIsEco(boolean isEco);
 

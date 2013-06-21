@@ -40,7 +40,7 @@ public class HttpClient {
     /**
      * Send post
      */
-    public void postData() {
+    public String postData() {
         // Create a new HttpClient and Post Header
         org.apache.http.client.HttpClient httpClient = new DefaultHttpClient();
         HttpPost httppost = new HttpPost(client.getApiUrl());
@@ -56,11 +56,15 @@ public class HttpClient {
             // Execute HTTP Post Request
             HttpResponse response = httpClient.execute(httppost);
 
+            return response.toString();
+
         } catch (ClientProtocolException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        return null;
     }
 
     /**

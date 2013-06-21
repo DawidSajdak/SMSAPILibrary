@@ -1,6 +1,7 @@
 package pl.smsapi;
 
 import pl.smsapi.http.HttpClient;
+import pl.smsapi.http.Response;
 import pl.smsapi.sms.Sms;
 
 import java.util.ArrayList;
@@ -77,10 +78,13 @@ public class Client {
     /**
      * Send SMS
      * @param sms Sms - See {@link pl.smsapi.sms.Sms}
+     * @return Response
      */
-    public void sendSms(Sms sms) {
+    public Response sendSms(Sms sms) {
         HttpClient httpClient = new HttpClient(buildSmsQueryParams(sms));
-        httpClient.postData();
+        Response response = new Response(httpClient.postData());
+
+        return response;
     }
 
     /**
@@ -114,6 +118,29 @@ public class Client {
 
         ArrayList<HttpClient.ValuePair<String, String>> valuePairs = new ArrayList<HttpClient.ValuePair<String, String>>();
 
+        HttpClient.ValuePair<String, String> valuePair = new HttpClient.ValuePair<String, String>();
+
+        valuePair.value = "message";
+        valuePair.description = sms.getMessage();
+
+        valuePairs.add(0, valuePair);
+
+        valuePair.value = "to";
+        valuePair.description = sms.getReceiver();
+
+        valuePairs.add(1, valuePair);
+
+        if(sms.getIsEco()) {
+            valuePair.value = "eco";
+            valuePair.description = "1";
+
+            valuePairs.add(2, valuePair);
+        }else if(sms.getReceiver() != null) {
+            valuePair.value = "from";
+            valuePair.description = sms.getReceiver();
+
+            valuePairs.add(2, valuePair);
+        }
 
         return valuePairs;
     }
