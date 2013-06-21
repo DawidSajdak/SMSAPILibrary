@@ -89,8 +89,9 @@ public class Client {
 
     /**
      * Get account balance
+     * @return Response
      */
-    public void getBalance() {
+    public Response getBalance() {
 
         ArrayList<HttpClient.ValuePair<String, String>> valuePairs = new ArrayList<HttpClient.ValuePair<String, String>>();
 
@@ -106,7 +107,9 @@ public class Client {
         valuePairs.add(1, valuePair);
 
         HttpClient httpClient = new HttpClient(valuePairs);
-        httpClient.postData();
+        Response response = new Response(httpClient.postData());
+
+        return response;
     }
 
     /**
