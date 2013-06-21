@@ -6,6 +6,19 @@ package pl.smsapi.sms;
  */
 public interface SmsInterface {
 
+    public boolean isEco();
 
+    public void setIsEco(boolean isEco);
 
+    public String getMessage();
+
+    public void setMessage(String message);
+
+    public String getReceiver();
+
+    public void setReceiver(String receiver);
+
+    public String getSender();
+
+    public void setSender(String sender);
 }

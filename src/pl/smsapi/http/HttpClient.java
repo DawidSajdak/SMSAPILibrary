@@ -48,7 +48,7 @@ public class HttpClient {
         try {
             // Add your data
             List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(nameValuePair.size());
-            for(ValuePair<String, String> valuePair : nameValuePair) {
+            for (ValuePair<String, String> valuePair : nameValuePair) {
                 nameValuePairs.add(new BasicNameValuePair(valuePair.description, valuePair.value));
             }
             httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
@@ -65,6 +65,7 @@ public class HttpClient {
 
     /**
      * ValuePair Class
+     *
      * @param <E> Object
      * @param <F> Object
      */

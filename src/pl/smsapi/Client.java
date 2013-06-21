@@ -1,6 +1,9 @@
 package pl.smsapi;
 
+import pl.smsapi.http.HttpClient;
 import pl.smsapi.sms.Sms;
+
+import java.util.ArrayList;
 
 /**
  * Client class
@@ -55,8 +58,20 @@ public class Client {
         this.isDebugMode = isDebugMode;
     }
 
+    /**
+     * Get api url
+     * @return String
+     */
     public String getApiUrl() {
         return this.apiURL;
+    }
+
+    /**
+     * Is debug mode
+     * @return boolean
+     */
+    public boolean isDebugMode() {
+        return isDebugMode;
     }
 
     /**
@@ -64,10 +79,42 @@ public class Client {
      * @param sms Sms - See {@link pl.smsapi.sms.Sms}
      */
     public void sendSms(Sms sms) {
-
+        HttpClient httpClient = new HttpClient(buildSmsQueryParams(sms));
+        httpClient.postData();
     }
 
+    /**
+     * Get account balance
+     */
     public void getBalance() {
 
+        ArrayList<HttpClient.ValuePair<String, String>> valuePairs = new ArrayList<HttpClient.ValuePair<String, String>>();
+
+        HttpClient.ValuePair<String, String> valuePair = new HttpClient.ValuePair<String, String>();
+        valuePair.value = "credits";
+        valuePair.description = "1";
+
+        valuePairs.add(0, valuePair);
+
+        valuePair.value = "details";
+        valuePair.description = "1";
+
+        valuePairs.add(1, valuePair);
+
+        HttpClient httpClient = new HttpClient(valuePairs);
+        httpClient.postData();
+    }
+
+    /**
+     * Build query params
+     * @param sms Sms
+     * @return ArrayList<HttpClient.ValuePair<String, String>>
+     */
+    protected ArrayList<HttpClient.ValuePair<String, String>> buildSmsQueryParams(Sms sms) {
+
+        ArrayList<HttpClient.ValuePair<String, String>> valuePairs = new ArrayList<HttpClient.ValuePair<String, String>>();
+
+
+        return valuePairs;
     }
 }
